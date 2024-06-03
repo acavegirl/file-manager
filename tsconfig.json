@@ -20,10 +20,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "noUnusedLocals": true,
-  "noUnusedParameters": true,
-  "sourceMap": true,
-  "removeComments": false
+    // "noUnusedLocals": true,
+    // "noUnusedParameters": true,
+    "sourceMap": true,
+    "removeComments": false
   },
   "include": [
     "src"

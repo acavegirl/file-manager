@@ -1,9 +1,10 @@
 import './App.css';
+import FileManager from '@/components/FileManager';
 
 function App() {
   return (
     <>
-      <div>hello</div>
+      <FileManager />
     </>
   );
 }
