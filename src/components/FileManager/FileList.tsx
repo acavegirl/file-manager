@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { ConfigProvider, Button, Table } from 'antd';
+import { ConfigProvider, Table, Input } from 'antd';
 import type { TableColumnsType } from 'antd';
-import { FolderTwoTone, FileTwoTone, FolderOutlined, FileOutlined } from '@ant-design/icons';
+import { FolderOutlined, FileOutlined } from '@ant-design/icons';
+import { SearchProps } from 'antd/es/input';
+
+const { Search } = Input;
 
 interface DataType {
   id: string;
   name: string;
+  type: string;
   size: string;
   isFolder: boolean;
   modifiedTime: string;
@@ -28,14 +32,33 @@ const columns: TableColumnsType<DataType> = [
         { text }
       </div>
     ),
+    sorter: (a, b) => a.name.length - b.name.length,
+  },
+  {
+    title: '类型',
+    dataIndex: 'type',
+    filterMultiple: true,
+    filters: [{
+      text: 'PDF',
+      value: 'PDF'
+    }, {
+      text: 'TXT',
+      value: 'TXT'
+    }, {
+      text: 'PNG',
+      value: 'PNG'
+    }],
+    onFilter: (value, record) => record.type.indexOf(value as string) === 0,
   },
   {
     title: '大小',
     dataIndex: 'size',
+    sorter: (a, b) => a.size.length - b.size.length,
   },
   {
     title: '修改时间',
     dataIndex: 'modifiedTime',
+    sorter: (a, b) => a.modifiedTime.length - b.modifiedTime.length,
   },
 ];
 
@@ -59,6 +82,7 @@ export default (props: PropsType) => {
       dataList.push({
         id: `id${i}`,
         name: `${curSelectFolder} ${i}`,
+        type: i%2==0 ? '' : "PDF",
         size: '1024k',
         modifiedTime: `${new Date()}`,
         isFolder: i%2==0 ? true : false
@@ -101,6 +125,7 @@ export default (props: PropsType) => {
         }}
       >
         <Table
+          style={{minHeight: 'calc(100vh - 44px)',}}
           rowKey="id"
           rowSelection={rowSelection}
           columns={columns}

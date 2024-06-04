@@ -1,7 +1,5 @@
 import { ConfigProvider, Tree } from 'antd';
 import type { GetProps, TreeDataNode } from 'antd';
-import { FolderTwoTone, FileTwoTone } from '@ant-design/icons';
-import React, { useState } from 'react';
 
 
 type DirectoryTreeProps = GetProps<typeof Tree.DirectoryTree>;
@@ -52,8 +50,8 @@ export default (props: PropsType) => {
       theme={{
         components: {
           Tree: {
-            titleHeight: 32,
-            directoryNodeSelectedBg: '#bae0ff',
+            titleHeight: 34,
+            directoryNodeSelectedBg: '#e6f4ff',
             directoryNodeSelectedColor: '#000',
             fontSize: 16,
           },
